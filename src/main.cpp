@@ -4,6 +4,8 @@
 #include <QDir>
 #include <QTranslator>
 #include <QDateTime>
+#include <QMutex>
+#include <QMutexLocker>
 
 #include "core.h"
 
@@ -43,8 +45,9 @@ void huntQtMessageHandle(QtMsgType type, const QMessageLogContext &context, cons
 
 int main(int argc, char *argv[])
 {
-//    QApplication::setStyle("Fusion");
+    QApplication::setStyle("Fusion");
     QApplication app(argc, argv);
+    app.setWindowIcon(QIcon(":/icons/hunt.png"));
     QDir appdir(QApplication::applicationDirPath());
 
     // write qt message to file hunt.log

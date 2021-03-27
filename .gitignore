@@ -76,3 +76,6 @@ build
 .idea
 cmake-build-debug
 CMakeLists.txt.user
+/CMakeSettings.json
+.vs
+/out

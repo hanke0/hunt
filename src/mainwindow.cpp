@@ -12,11 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     , m_eventLogButton(new QPushButton{this})
 {
     ui->setupUi(this);
-    ui->statusbar->addWidget(new QLabel{"    ", this});
     ui->statusbar->addWidget(m_ariaLabel);
     setupStatusBarEventLog();
     setupAria();
-    ui->statusbar->addPermanentWidget(new QLabel{"    ", this});
 }
 
 MainWindow::~MainWindow()
@@ -51,7 +49,7 @@ void MainWindow::setupAria()
 void MainWindow::setupStatusBarEventLog()
 {
     m_eventLogButton->setFlat(true);
-    m_eventLogButton->setStyleSheet("margin:0");
+    m_eventLogButton->setStyleSheet("margin:0;hover{background-color: grey;}");
     m_eventLogButton->setText(tr("event log"));
     ui->statusbar->addPermanentWidget(m_eventLogButton);
     addDockWidget(Qt::BottomDockWidgetArea, m_eventLogWidget);
