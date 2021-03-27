@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "centralwidget.h"
 #include "menubar.h"
 #include "statusbar.h"
 
@@ -17,5 +18,6 @@ public:
 private:
     StatusBar *m_statusbar;
     MenuBar *m_menubar;
+    CentralWidget *m_centralWidget;
 };
 #endif // HUNT_MAINWINDOW_H

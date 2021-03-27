@@ -18,7 +18,7 @@ class StatusBar : public QStatusBar
 {
     Q_OBJECT
 public:
-    explicit StatusBar(QObject *parent = nullptr);
+    explicit StatusBar(QWidget *parent = nullptr);
     ~StatusBar() override;
 
     void setUp(QMainWindow *mainWindow);

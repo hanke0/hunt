@@ -4,6 +4,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_statusbar(new StatusBar{this})
     , m_menubar(new MenuBar{this})
+    , m_centralWidget(new CentralWidget{this})
 {
     resize(800, 600);
     setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
@@ -16,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_statusbar->setUp(this);
     setStatusBar(m_statusbar);
+
+    m_centralWidget->setUp(this);
 }
 
 MainWindow::~MainWindow() noexcept

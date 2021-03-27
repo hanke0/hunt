@@ -1,7 +1,8 @@
 #include "menubar.h"
 
-MenuBar::MenuBar(QObject *parent)
-    : m_menuFile(new QMenu{this})
+MenuBar::MenuBar(QWidget *parent)
+    : QMenuBar(parent)
+    , m_menuFile(new QMenu{this})
     , m_actionOpen(new QAction{this})
 {
     m_menuFile->setTitle(tr("file"));

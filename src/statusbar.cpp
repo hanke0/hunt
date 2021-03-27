@@ -1,7 +1,8 @@
 #include "statusbar.h"
 
-StatusBar::StatusBar(QObject *parent)
-    : m_ariaProcess(new hunt::Aria2Ctrl{this})
+StatusBar::StatusBar(QWidget *parent)
+    : QStatusBar(parent)
+    , m_ariaProcess(new hunt::Aria2Ctrl{this})
     , m_ariaLabel(new QLabel{this})
     , m_ariaClient(new hunt::Aria2Client{this})
     , m_eventLogWidget(new EventLogWidget{this})
@@ -55,6 +56,9 @@ void StatusBar::setupStatusBarEventLog(QMainWindow *mainWindow)
     m_eventLogButton->setStyleSheet("margin:0;hover{background-color: grey;}");
     m_eventLogButton->setText(tr("event log"));
     addPermanentWidget(m_eventLogButton);
+    auto size = mainWindow->size();
+    size.setHeight(size.height() / 4);
+    m_eventLogWidget->resize(size);
     mainWindow->addDockWidget(Qt::BottomDockWidgetArea, m_eventLogWidget);
     connect(m_eventLogButton, &QPushButton::clicked, this, [this] {
         this->m_eventLogWidget->reverseShow();

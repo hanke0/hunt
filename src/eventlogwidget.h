@@ -2,12 +2,8 @@
 #define HUNT_EVENTLOGWIDGET_H
 
 #include <QDockWidget>
-
-#include "ui_eventlogwidget.h"
-
-namespace Ui {
-class EventLogWidget;
-}
+#include <QGridLayout>
+#include <QPlainTextEdit>
 
 class EventLogWidget : public QDockWidget
 {
@@ -22,7 +18,9 @@ public:
     void addTips(const QString &txt);
 
 private:
-    Ui::EventLogWidget *ui;
+    QWidget *dockWidgetContents;
+    QGridLayout *gridLayout;
+    QPlainTextEdit *plainTextEdit;
 };
 
 #endif // HUNT_EVENTLOGWIDGET_H

@@ -4,9 +4,15 @@
 
 EventLogWidget::EventLogWidget(QWidget *parent)
     : QDockWidget(parent)
-    , ui(new Ui::EventLogWidget)
+    , dockWidgetContents(new QWidget{this})
+    , gridLayout(new QGridLayout{dockWidgetContents})
+    , plainTextEdit(new QPlainTextEdit{dockWidgetContents})
 {
-    ui->setupUi(this);
+    gridLayout->setMargin(0);
+    gridLayout->addWidget(plainTextEdit, 0, 0);
+    dockWidgetContents->setLayout(gridLayout);
+    setWidget(dockWidgetContents);
+
     hide();
     setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetClosable);
     setAllowedAreas(Qt::AllDockWidgetAreas);
@@ -16,7 +22,9 @@ EventLogWidget::EventLogWidget(QWidget *parent)
 
 EventLogWidget::~EventLogWidget()
 {
-    delete ui;
+    delete plainTextEdit;
+    delete gridLayout;
+    delete dockWidgetContents;
 }
 
 void EventLogWidget::reverseShow()
@@ -32,5 +40,5 @@ void EventLogWidget::addTips(const QString &txt)
 {
     auto time = QDateTime::currentDateTime().toString("hh:mm:ss");
     auto line = QString("[%2] %1\n").arg(txt, time);
-    ui->plainTextEdit->appendPlainText(line);
+    plainTextEdit->appendPlainText(line);
 }

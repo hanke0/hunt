@@ -4,12 +4,13 @@
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
+#include <QWidget>
 
 class MenuBar : public QMenuBar
 {
     Q_OBJECT
 public:
-    explicit MenuBar(QObject *parent);
+    explicit MenuBar(QWidget *parent);
     ~MenuBar() noexcept override;
 
 public:

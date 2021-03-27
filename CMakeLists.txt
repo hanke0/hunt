@@ -48,13 +48,15 @@ set(PROJECT_SOURCES
         src/aria2client.h
         src/eventlogwidget.cpp
         src/eventlogwidget.h
-        src/eventlogwidget.ui
         src/sidebar.cpp
         src/sidebar.h
         src/statusbar.cpp
         src/statusbar.h
         src/menubar.cpp
-        src/menubar.h)
+        src/menubar.h
+        src/centralwidget.cpp
+        src/centralwidget.h
+        )
 
 qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
 add_custom_target(translations DEPENDS ${QM_FILES})
