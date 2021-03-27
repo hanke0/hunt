@@ -29,57 +29,76 @@ include(cmake/relative.cmake)
 find_package(QT NAMES Qt5 COMPONENTS Core Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets LinguistTools WebSockets REQUIRED)
 
-set(TS_FILES translations/zh_CN.ts)
+include_directories(src)
+
+set(TS_FILES
+        translations/zh_CN.ts
+        )
 
 set(PROJECT_SOURCES
         src/main.cpp
         src/mainwindow.cpp
         src/mainwindow.h
-        src/mainwindow.ui
         src/core.cpp
         src/core.h
         src/scopeguard.h
         src/aria2ctrl.h
         src/aria2ctrl.cpp
         src/aria2client.cpp
-        src/aia2client.h
+        src/aria2client.h
         src/eventlogwidget.cpp
         src/eventlogwidget.h
         src/eventlogwidget.ui
+        src/sidebar.cpp
+        src/sidebar.h
+        src/statusbar.cpp
+        src/statusbar.h
+        src/menubar.cpp
+        src/menubar.h)
+
+qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
+add_custom_target(translations DEPENDS ${QM_FILES})
+# The qm files are generated in the build tree, but the qrc file is inside the
+# source directory and the path to resources are relative to the location of
+# the qrc file itself. We use configure_file() to copy the qrc file in the build
+# directory such that it can find the qm translations files. The qrc file is
+# copied if it doesn't exist in the destination or if it is modified.
+configure_file(translations/translations.qrc ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+
+set(HUNT_RESOURCES
+        "${CMAKE_CURRENT_SOURCE_DIR}/hunt.qrc"
+        ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
         )
 
-set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/hunt.qrc")
-
-if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(hunt
+if (ANDROID)
+    add_library(hunt SHARED
             ${PROJECT_SOURCES}
             ${TS_FILES}
-            ${APP_ICON_RESOURCE_WINDOWS}
+            ${HUNT_RESOURCES}
             )
-
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else ()
-    if (ANDROID)
-        add_library(hunt SHARED
-                ${PROJECT_SOURCES}
-                ${TS_FILES}
-                ${APP_ICON_RESOURCE_WINDOWS}
-                )
-    else ()
-        add_executable(hunt
-                ${PROJECT_SOURCES}
-                ${TS_FILES}
-                ${APP_ICON_RESOURCE_WINDOWS}
-                )
-    endif ()
-
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+    add_executable(hunt
+            ${PROJECT_SOURCES}
+            ${TS_FILES}
+            ${HUNT_RESOURCES}
+            )
 endif ()
 
-set(Qt_COMPONENTS
-        Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::WebSockets)
+set(Qt_COMPONENTS Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::WebSockets)
 
 target_link_libraries(hunt PRIVATE ${Qt_COMPONENTS})
 redefine_file_macro(hunt __HUNT_FILE__)
 
-add_subdirectory(tests)
+# target test
+find_package(Qt${QT_VERSION_MAJOR}Test REQUIRED)
+add_executable(hunt_test
+        tests/hunt_test.cpp
+        tests/hunt_test.h
+        src/scopeguard.h
+        src/aria2ctrl.cpp
+        src/aria2ctrl.h
+        )
+target_link_libraries(hunt_test PRIVATE
+        Qt${QT_VERSION_MAJOR}::Test ${Qt_COMPONENTS})
+add_test(hunt_test hunt_test)
+redefine_file_macro(hunt_test __HUNT_FILE__)

@@ -23,7 +23,67 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="MainWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout"/>
+   <layout class="QFormLayout" name="formLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QListWidget" name="listWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <widget class="QWidget" name="downloadList">
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QListWidget" name="listWidget_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="stopList"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">margin-left: 10;
+margin-right: 10;</string>
+   </property>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -31,26 +91,20 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>24</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>file</string>
     </property>
-    <addaction name="file_open_action"/>
+    <addaction name="actionOpen"/>
    </widget>
-   <addaction name="menu"/>
+   <addaction name="menuFile"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="styleSheet">
-    <string notr="true">margin-left: 10;
-marigin-right: 10;</string>
-   </property>
-  </widget>
-  <action name="file_open_action">
+  <action name="actionOpen">
    <property name="text">
-    <string>open </string>
+    <string>open</string>
    </property>
   </action>
  </widget>

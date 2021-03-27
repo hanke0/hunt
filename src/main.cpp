@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QDir>
-#include <QTranslator>
 #include <QDateTime>
+#include <QDir>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QTranslator>
 
 #include "core.h"
 
@@ -45,7 +45,6 @@ void huntQtMessageHandle(QtMsgType type, const QMessageLogContext &context, cons
 
 int main(int argc, char *argv[])
 {
-    QApplication::setStyle("Fusion");
     QApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/icons/hunt.png"));
     QDir appdir(QApplication::applicationDirPath());
@@ -57,16 +56,15 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(huntQtMessageHandle);
 
     QString locale = QLocale::system().name();
-    auto localepath = appdir.filePath(QString("hunt_%1.qm").arg(locale));
     QScopedPointer<QTranslator> translator(new QTranslator);
-    if (translator->load(localepath)) {
-        HUNT_LOG_DEBUG << QString("find locale %1").arg(localepath);
+    if (translator->load(QString(":/translations/%1").arg(locale))) {
+        HUNT_LOG_DEBUG << QString("find locale %1").arg(locale);
     } else {
-        HUNT_LOG_DEBUG << QString("can't find locale %1").arg(localepath);
+        HUNT_LOG_DEBUG << QString("can't find locale %1").arg(locale);
     }
     app.installTranslator(translator.data());
 
-    MainWindow w;
-    w.show();
+    QScopedPointer<MainWindow> w(new MainWindow);
+    w->show();
     return app.exec();
 }

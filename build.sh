@@ -39,7 +39,7 @@ build_and_run() {
 
 format_cpp() {
 	cd "$here" || return 1
-	clang-format --verbose -i *.cpp *.h
+	clang-format --verbose -i "$here"/src/*.cpp "$here"/src/*.h
 }
 
 format_sh() {

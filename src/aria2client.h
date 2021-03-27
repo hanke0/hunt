@@ -13,6 +13,7 @@ class Aria2Client : public QObject
 public:
     explicit Aria2Client(QObject *parent = nullptr);
     ~Aria2Client() override;
+
 public:
     void setPort(qint32 port) noexcept;
     void openConnect();

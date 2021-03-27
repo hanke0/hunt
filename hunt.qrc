@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/"/>
-    <qresource prefix="/translate">
-        <file alias="zh_CN">hunt_zh_CN.ts</file>
-    </qresource>
     <qresource prefix="/icons">
         <file>hunt.png</file>
     </qresource>
