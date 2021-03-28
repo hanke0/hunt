@@ -30,6 +30,6 @@ QString QtEnumToQString(const QEnum value)
     return QMetaEnum::fromType<QEnum>().valueToKey(value);
 }
 
-#define HUNT_TR(args...) ::QCoreApplication::translate("hunt", args)
+#define HUNT_TR(key, ...) ::QCoreApplication::translate("hunt", key, ##__VA_ARGS__)
 
 #endif // HUNT_CORE_H
