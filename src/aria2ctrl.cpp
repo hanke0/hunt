@@ -28,8 +28,8 @@ Aria2Ctrl::Aria2Ctrl(QObject *parent)
     , m_aria2c(new QProcess{this})
 {
     QDir path(QApplication::applicationDirPath());
-    m_aria2c->setStandardOutputFile(path.filePath("aria2c.log"));
-    m_aria2c->setStandardErrorFile(path.filePath("aria2c.error.log"));
+    m_aria2c->setStandardOutputFile(path.filePath("aria2c.console.log"));
+    m_aria2c->setStandardErrorFile(path.filePath("aria2c.error.console.log"));
 }
 
 Aria2Ctrl::~Aria2Ctrl()
@@ -50,6 +50,10 @@ void Aria2Ctrl::start(bool wait)
     QStringList args;
     args << "--enable-rpc";
     args << QString("--rpc-listen-port=%1").arg(m_port);
+    args << "--enable-color=false";
+    args << "--rlimit-nofile=65535";
+    QDir path(QApplication::applicationDirPath());
+    args << "-l" << path.filePath("aria2c.log");
     m_aria2c->start(findAria2c(), args, QProcess::ReadOnly);
     HUNT_LOG_DEBUG << "aria2c start and listen on " << m_port;
     if (wait) {

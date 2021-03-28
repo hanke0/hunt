@@ -2,7 +2,10 @@
 #define CENTRALWIDGET_H
 
 #include <QMainWindow>
+#include <QStackedWidget>
 #include <QWidget>
+
+#include "sidebar.h"
 
 class CentralWidget : public QWidget
 {
@@ -12,6 +15,10 @@ public:
     ~CentralWidget() noexcept override = default;
 
     void setUp(QMainWindow *mainWindow);
+
+private:
+    SideBar *sidebar;
+    QStackedWidget *stackedWidget;
 };
 
 #endif //CENTRALWIDGET_H

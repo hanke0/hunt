@@ -7,9 +7,9 @@ MenuBar::MenuBar(QWidget *parent)
 {
     m_menuFile->setTitle(tr("file"));
     m_actionOpen->setText(tr("open"));
+    m_menuFile->addAction(m_actionOpen);
 
     addAction(m_menuFile->menuAction());
-    m_menuFile->addAction(m_actionOpen);
 }
 
 MenuBar::~MenuBar() noexcept

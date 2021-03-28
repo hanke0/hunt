@@ -14,9 +14,10 @@ class SideBar : public QWidget
     Q_OBJECT
 public:
     explicit SideBar(QWidget *parent = nullptr);
-    void addAction(QAction *action);
     QAction *addAction(const QString &text, const QIcon &icon = QIcon());
     QSize minimumSizeHint() const override;
+
+    void setActionHeight(int h) { m_actionHeight = h; }
 
 signals:
 
@@ -31,10 +32,11 @@ protected:
     QAction *actionAt(const QPoint &at);
 
 private:
-    QList<QAction *> mActions;
+    QList<QAction *> m_actions;
 
-    QAction *mCheckedAction;
-    QAction *mOverAction;
+    QAction *m_checkedAction;
+    QAction *m_overAction;
+    int m_actionHeight;
 };
 
 #endif //SIDEBAR_H

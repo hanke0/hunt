@@ -19,10 +19,10 @@
 
 #define HUNT_LOG_LEVEL(lvl) lvl().nospace() << __HUNT_FILE__ << ":" << __LINE__ << "] - "
 #define HUNT_LOG_DEBUG HUNT_LOG_LEVEL(qDebug)
-#define HUNT_LOG_INFO HUNT_LOG_EVEL(qInfo)
-#define HUNT_LOG_WARN HUNT_LOG_EVEL(qWarning)
-#define HUNT_LOG_CRITICAL HUNT_LOG_EVEL(qCritical)
-#define HUNT_LOG_FATAL HUNT_LOG_EVEL(qFatal)
+#define HUNT_LOG_INFO HUNT_LOG_LEVEL(qInfo)
+#define HUNT_LOG_WARN HUNT_LOG_LEVEL(qWarning)
+#define HUNT_LOG_CRITICAL HUNT_LOG_LEVEL(qCritical)
+#define HUNT_LOG_FATAL HUNT_LOG_LEVEL(qFatal)
 
 template<typename QEnum>
 QString QtEnumToQString(const QEnum value)
