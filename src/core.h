@@ -2,6 +2,7 @@
 #define HUNT_CORE_H
 
 #include <QMetaEnum>
+#include <QtCore/QCoreApplication>
 #include <QtCore/QDebug>
 
 #if (defined(_WIN32) || defined(_WIN64))
@@ -28,5 +29,7 @@ QString QtEnumToQString(const QEnum value)
 {
     return QMetaEnum::fromType<QEnum>().valueToKey(value);
 }
+
+#define HUNT_TR(args...) ::QCoreApplication::translate("hunt", args)
 
 #endif // HUNT_CORE_H
