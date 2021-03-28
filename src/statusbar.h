@@ -1,9 +1,5 @@
-//
-// Created by kehan on 2021/3/28.
-//
-
-#ifndef STATUSBAR_H
-#define STATUSBAR_H
+#ifndef HUNT_STATUSBAR_H
+#define HUNT_STATUSBAR_H
 
 #include <QLabel>
 #include <QMainWindow>
@@ -38,4 +34,4 @@ private:
     QPushButton *m_eventLogButton;
 };
 
-#endif //STATUSBAR_H
+#endif //HUNT_STATUSBAR_H

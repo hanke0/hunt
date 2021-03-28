@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CentralWidget</name>
+    <message>
+        <location filename="../src/centralwidget.cpp" line="14"/>
+        <source>download list</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EventLogWidget</name>
     <message>
         <location filename="../src/eventlogwidget.cpp" line="20"/>

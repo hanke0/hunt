@@ -121,3 +121,11 @@ QAction *SideBar::actionAt(const QPoint &at)
     }
     return nullptr;
 }
+
+QAction *SideBar::action(int n)
+{
+    if (n < 0 || n >= m_actions.size()) {
+        return nullptr;
+    }
+    return m_actions.takeAt(n);
+}

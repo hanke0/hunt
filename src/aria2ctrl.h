@@ -1,5 +1,5 @@
-#ifndef HUNT_Aria2Ctrl_H
-#define HUNT_Aria2Ctrl_H
+#ifndef HUNT_ARIA2CTRL_H
+#define HUNT_ARIA2CTRL_H
 
 #include <memory>
 #include <string>
@@ -33,4 +33,4 @@ public:
 
 } // namespace hunt
 
-#endif // HUNT_Aria2Ctrl_H
+#endif // HUNT_ARIA2CTRL_H

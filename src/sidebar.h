@@ -1,7 +1,3 @@
-//
-// Created by kehan on 2021/3/28.
-//
-
 #ifndef HUNT_SIDEBAR_H
 #define HUNT_SIDEBAR_H
 
@@ -18,10 +14,7 @@ public:
     QSize minimumSizeHint() const override;
 
     void setActionHeight(int h) { m_actionHeight = h; }
-
-signals:
-
-public slots:
+    QAction *action(int n);
 
 protected:
     void paintEvent(QPaintEvent *event) override;

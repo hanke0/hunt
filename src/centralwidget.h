@@ -1,5 +1,5 @@
-#ifndef CENTRALWIDGET_H
-#define CENTRALWIDGET_H
+#ifndef HUNT_CENTRAL_WIDGET_H
+#define HUNT_CENTRAL_WIDGET_H
 
 #include <QMainWindow>
 #include <QStackedWidget>
@@ -21,4 +21,4 @@ private:
     QStackedWidget *stackedWidget;
 };
 
-#endif //CENTRALWIDGET_H
+#endif //HUNT_CENTRAL_WIDGET_H
